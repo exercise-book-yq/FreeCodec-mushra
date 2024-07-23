@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="OlaWod">
+
+    <title>FreeCodec Demo Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="css/clean-blog.css" rel="stylesheet">
+	
+	<link rel="stylesheet" href="./css/fontawesome.all.min.css">
+	
+	<script defer src="./js/fontawesome.all.min.js"></script>
+	<!-- Bootstrap core JavaScript -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+	<!-- Custom scripts for this template -->
+	<script src="js/clean-blog.js"></script>
+	<script src="js/interp.js"></script>
+    <script>
+
+    const rows = [["1", "1", "data/target/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["1", "2", "data/ticodec-1000bps/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["1", "3", "data/dac-1000bps/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["1", "4", "data/ours/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["1", "5", "data/ours-spk_vq/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["1", "6", "data/ticodec-500bps/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["1", "7", "data/speex/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["1", "8", "data/dac-500bps/vctk/p233_127.wav", "data/target/vctk/p233_127.wav"], ["2", "1", "data/target/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["2", "2", "data/ours/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["2", "3", "data/dac-500bps/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["2", "4", "data/speex/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["2", "5", "data/ticodec-1000bps/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["2", "6", "data/ticodec-500bps/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["2", "7", "data/dac-1000bps/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["2", "8", "data/ours-spk_vq/test-clean/3570-5696-0008.wav", "data/target/test-clean/3570-5696-0008.wav"], ["3", "1", "data/ours/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["3", "2", "data/target/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["3", "3", "data/dac-500bps/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["3", "4", "data/speex/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["3", "5", "data/ours-spk_vq/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["3", "6", "data/ticodec-500bps/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["3", "7", "data/dac-1000bps/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["3", "8", "data/ticodec-1000bps/vctk/p376_014.wav", "data/target/vctk/p376_014.wav"], ["4", "1", "data/ticodec-500bps/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["4", "2", "data/speex/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["4", "3", "data/ours-spk_vq/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["4", "4", "data/ours/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["4", "5", "data/target/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["4", "6", "data/dac-500bps/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["4", "7", "data/ticodec-1000bps/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["4", "8", "data/dac-1000bps/test-clean/7021-85628-0016.wav", "data/target/test-clean/7021-85628-0016.wav"], ["5", "1", "data/ours-spk_vq/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["5", "2", "data/ours/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["5", "3", "data/target/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["5", "4", "data/ticodec-1000bps/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["5", "5", "data/dac-500bps/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["5", "6", "data/ticodec-500bps/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["5", "7", "data/speex/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["5", "8", "data/dac-1000bps/test-clean/7729-102255-0033.wav", "data/target/test-clean/7729-102255-0033.wav"], ["6", "1", "data/ours-spk_vq/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["6", "2", "data/target/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["6", "3", "data/speex/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["6", "4", "data/ticodec-500bps/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["6", "5", "data/ours/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["6", "6", "data/ticodec-1000bps/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["6", "7", "data/dac-1000bps/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["6", "8", "data/dac-500bps/test-clean/5142-33396-0006.wav", "data/target/test-clean/5142-33396-0006.wav"], ["7", "1", "data/speex/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["7", "2", "data/dac-500bps/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["7", "3", "data/dac-1000bps/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["7", "4", "data/target/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["7", "5", "data/ticodec-500bps/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["7", "6", "data/ticodec-1000bps/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["7", "7", "data/ours-spk_vq/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["7", "8", "data/ours/test-clean/7176-92135-0041.wav", "data/target/test-clean/7176-92135-0041.wav"], ["8", "1", "data/speex/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["8", "2", "data/dac-1000bps/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["8", "3", "data/ours/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["8", "4", "data/dac-500bps/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["8", "5", "data/ours-spk_vq/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["8", "6", "data/ticodec-500bps/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["8", "7", "data/target/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["8", "8", "data/ticodec-1000bps/vctk/p374_006.wav", "data/target/vctk/p374_006.wav"], ["9", "1", "data/ours/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["9", "2", "data/dac-500bps/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["9", "3", "data/ticodec-1000bps/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["9", "4", "data/ticodec-500bps/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["9", "5", "data/target/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["9", "6", "data/speex/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["9", "7", "data/dac-1000bps/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["9", "8", "data/ours-spk_vq/vctk/p233_016.wav", "data/target/vctk/p233_016.wav"], ["10", "1", "data/dac-500bps/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["10", "2", "data/speex/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["10", "3", "data/ticodec-1000bps/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["10", "4", "data/ticodec-500bps/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["10", "5", "data/target/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["10", "6", "data/ours/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["10", "7", "data/dac-1000bps/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["10", "8", "data/ours-spk_vq/test-clean/7176-92135-0005.wav", "data/target/test-clean/7176-92135-0005.wav"], ["11", "1", "data/ticodec-1000bps/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["11", "2", "data/dac-500bps/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["11", "3", "data/ticodec-500bps/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["11", "4", "data/target/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["11", "5", "data/ours/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["11", "6", "data/ours-spk_vq/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["11", "7", "data/dac-1000bps/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["11", "8", "data/speex/test-clean/8555-284449-0016.wav", "data/target/test-clean/8555-284449-0016.wav"], ["12", "1", "data/speex/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["12", "2", "data/ticodec-1000bps/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["12", "3", "data/dac-500bps/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["12", "4", "data/dac-1000bps/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["12", "5", "data/ours-spk_vq/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["12", "6", "data/ours/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["12", "7", "data/target/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["12", "8", "data/ticodec-500bps/vctk/p362_011.wav", "data/target/vctk/p362_011.wav"], ["13", "1", "data/ours/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["13", "2", "data/ours-spk_vq/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["13", "3", "data/ticodec-1000bps/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["13", "4", "data/ticodec-500bps/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["13", "5", "data/target/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["13", "6", "data/speex/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["13", "7", "data/dac-1000bps/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["13", "8", "data/dac-500bps/vctk/p363_003.wav", "data/target/vctk/p363_003.wav"], ["14", "1", "data/dac-1000bps/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["14", "2", "data/target/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["14", "3", "data/speex/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["14", "4", "data/dac-500bps/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["14", "5", "data/ticodec-500bps/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["14", "6", "data/ours-spk_vq/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["14", "7", "data/ours/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["14", "8", "data/ticodec-1000bps/test-clean/7729-102255-0027.wav", "data/target/test-clean/7729-102255-0027.wav"], ["15", "1", "data/dac-1000bps/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["15", "2", "data/speex/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["15", "3", "data/ours/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["15", "4", "data/ours-spk_vq/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["15", "5", "data/dac-500bps/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["15", "6", "data/ticodec-500bps/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["15", "7", "data/target/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["15", "8", "data/ticodec-1000bps/test-clean/8555-292519-0007.wav", "data/target/test-clean/8555-292519-0007.wav"], ["16", "1", "data/ours/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"], ["16", "2", "data/ticodec-1000bps/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"], ["16", "3", "data/speex/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"], ["16", "4", "data/target/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"], ["16", "5", "data/dac-1000bps/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"], ["16", "6", "data/ticodec-500bps/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"], ["16", "7", "data/dac-500bps/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"], ["16", "8", "data/ours-spk_vq/test-clean/3570-5695-0003.wav", "data/target/test-clean/3570-5695-0003.wav"]]
+	
+    function myFunction(){
+        console.log("Button clicked!");
+		var res = {};
+		var s = "";
+		var i = 1;
+        $("input[type='number']").each(function(){
+            var name = $(this).attr('name');
+            var id = $(this).attr('id')
+            var value = $(this).val();
+            res[name]=value;
+			s = s + String(id) + "|" + String(name) + "|" + String(value) + "<br>";
+			i = i + 1;
+        });
+		console.log(res);
+		document.getElementById("result").innerHTML = s;
+	}
+ 
+    function populateAudioGroup() {
+        let num = document.getElementById("audio-group-selector").value;
+        let inner_div = document.createElement("div");
+
+        let utt = num;
+
+        let table = document.createElement("table");
+        table.className = "mdl-data-table";
+
+        let headerRow = table.createTHead().insertRow();
+
+        // Define your headers or use the appropriate values
+        let headers = ["ID ", "Score wav", "Reference wav", "Score"];
+
+        headers.forEach((header) => {
+            let th = document.createElement("th");
+            th.scope = "col";
+            th.innerText = header;
+            headerRow.appendChild(th);
+        });
+        console.log(rows);
+
+
+        // 清除先前的音频控件
+        
+        rows.filter(wav => Number(wav[0]) === Number(num)).forEach(wav => {
+            let row = table.insertRow();
+            row.insertCell().innerText = num + '-' + wav[1];  // Assuming id is at index 0
+
+            // Add audio controls for Score Audio
+            let scoreAudioCell = row.insertCell();
+            let scoreAudio = createAudio(wav[2]);
+            scoreAudioCell.appendChild(scoreAudio);
+
+            // Add audio controls for Reference Audio
+            let referenceAudioCell = row.insertCell();
+            let referenceAudio = createAudio(wav[3]);
+            referenceAudioCell.appendChild(referenceAudio);
+
+            // Input for Score
+            let scoreInputCell = row.insertCell();
+            let scoreInputContainer = document.createElement("div");
+            let scoreInput = document.createElement("input");
+            scoreInput.type = "number";
+            scoreInput.value = "1";  // Default value, you can adjust it
+            scoreInput.id = (num-1)*10 + Number(wav[1]);
+            scoreInput.name = wav[2];  // Assuming wav[2] is the key for Score Audio
+            scoreInputContainer.appendChild(scoreInput);
+            scoreInputCell.appendChild(scoreInputContainer);
+            
+        });
+
+      
+        
+        let uttTitle = document.createTextNode("Utterance " + utt);
+        let uttTitleEl = document.createElement("h6");
+        uttTitleEl.appendChild(uttTitle);
+
+        inner_div.appendChild(uttTitleEl);
+        inner_div.appendChild(table);
+
+        
+        var div = document.getElementById("audio-example");
+        div.innerHTML = inner_div.innerHTML;
+
+    }
+
+    function createAudio(utterance) {
+
+        const audio = document.createElement("audio");
+        audio.controls = "controls";
+        audio.preload = "none";
+        audio.src = utterance;
+        audio.innerText = "Your browser does not support the audio element.";
+        return audio;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        populateAudioGroup();
+    });
+
+
+
+	</script>
+
+</head>
+<body id="page-top">
+
+	<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+		<div class="container">
+			<a class="navbar-brand js-scroll-trigger" href="#page-top">MUSHRA Test For Neural Speech Codecs</a>
+			<button class="navbar-toggler navbar-toggler-right font-weight-bold text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu <i class="fas fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#Mushra-1">具体评分标准</a>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#Mushra-2">测试说明</a></li>
+					<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#vctk">听音序列</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#result">结果提交</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+    <!-- Page Header -->
+    <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+        <div class="container" style="padding-bottom:10px">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>MUSHRA Test For Neural Speech Codecs</h1>
+                        <span class="subheading">
+                            <h3>Thanks for your listening!</h3>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+                <div class="site-heading" id="Mushra-1">
+                <h3>具体评分标准</h3>
+                    <table border="1">
+                    <tr>
+                        <th>语音质量</th>
+                        <th>分数区间</th>
+                        <th>主观感受描述</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Excellent</td>
+                        <td>90-100</td>
+                        <td>无音调/音色/韵律失真、无背景噪声、无响度降低、饱满度较好</td>
+                    </tr>
+                    <tr>
+                        <td>80-90</td>
+                        <td>无音调/音色/韵律失真、无背景噪声、轻微响度降低、饱满度轻微失真(其中一点则在此区间)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Good</td>
+                        <td>70-80</td>
+                        <td>轻微音调/音色/韵律失真、轻微背景噪声、轻微响度降低、饱满度轻微失真(两点及以上则在此区间)</td>
+                    </tr>
+                    <tr>
+                        <td>60-70</td>
+                        <td>一般音调/音色/韵律失真、一般背景噪声、一般响度降低、饱满度一般失真(两点则在此区间)</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="2">Fair</td>
+                        <td>40-60</td>
+                        <td>一般音调/音色/韵律失真、一般背景噪声、一般响度降低、饱满度一般失真(三点及以上则在此区间)</td>
+                    </tr>
+                    <tr>
+                        <td>20-40</td>
+                        <td>较大音调/音色/韵律失真、较大背景噪声、较大响度降低、饱满度较大失真(三点及以上则在此区间)</td>
+                    </tr>
+                    <tr>
+                        <td>Poor</td>
+                        <td>0-20</td>
+                        <td>严重音调/音色/韵律失真、严重背景噪声、严重响度降低、饱满度严重失真((两点及以上则在此区间)</td>
+                    </tr>
+                    </table>
+                </div>
+                <div class="site-heading" id="Mushra-2">
+                <h3 style="font-weight: bold;">测试说明</h3>
+                <p style="font-style: italic; margin-bottom: 14px;">音调：听觉分辨的声音高低程度；<br>
+                    音色：每个人的声音以及各种乐器所发出的声音的区别，就是由音色不同造成的。</p>
+                <p>请在安静环境下，戴上耳机进行听音</p>
+                <p style="font-weight: bold; margin-bottom: 14px;">每次通过下方选项框从1-16组语音中选择一组进行听音测试，测试分数输入为0-100，输入至Score分数框中。每次听完一组测试，点击下方submit按钮，点击后下方会显示听音结果，将该结果复制到一个txt文件进行保存，每组测试结果依次放在同一个txt文件中。</p>
+                </div>
+        <div class="row">
+            <div class="post-preview" id="vctk">
+            <h3 class="title">Audio Examples</h3>
+            <label for="audio-group-selector">Select Audio Group:</label>
+            <select id="audio-group-selector" onchange="populateAudioGroup()">
+                
+                    
+                        <option value="1" selected>1</option>
+                    
+                
+                    
+                        <option value="2">2</option>
+                    
+                
+                    
+                        <option value="3">3</option>
+                    
+                
+                    
+                        <option value="4">4</option>
+                    
+                
+                    
+                        <option value="5">5</option>
+                    
+                
+                    
+                        <option value="6">6</option>
+                    
+                
+                    
+                        <option value="7">7</option>
+                    
+                
+                    
+                        <option value="8">8</option>
+                    
+                
+                    
+                        <option value="9">9</option>
+                    
+                
+                    
+                        <option value="10">10</option>
+                    
+                
+                    
+                        <option value="11">11</option>
+                    
+                
+                    
+                        <option value="12">12</option>
+                    
+                
+                    
+                        <option value="13">13</option>
+                    
+                
+                    
+                        <option value="14">14</option>
+                    
+                
+                    
+                        <option value="15">15</option>
+                    
+                
+                    
+                        <option value="16">16</option>
+                    
+                
+            </select>
+            </div>
+
+
+
+            <br /><br />
+            <div class="content has-text-justified" id="audio-example">
+
+            <div class="audio-group-content" id="audio-group-content">
+                <!-- This div will be populated with the selected audio group content -->
+            </div>
+
+            
+        </div>
+        <div class="col-lg-14 col-md-12 mx-auto">
+                <hr>
+				<input type="button" value="Submit" onclick="myFunction()">
+				<p id="result">Results:</p>
+				
+				
+				<hr>
+
+        </div>
+
+    </div>
+                
+				
+
+
+</body>
+
+</html>
