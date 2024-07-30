@@ -136,6 +136,34 @@
 
 
 	</script>
+	<script>
+		function copyText() {
+		// 获取要复制的文本
+		var textToCopy = document.getElementById("result");
+
+		// 创建一个文本域元素
+		var textarea = document.createElement("textarea");
+
+		// 将要复制的文本设置为文本域的值
+		textarea.value = textToCopy.innerText;
+
+		// 将文本域添加到文档中
+		document.body.appendChild(textarea);
+
+		// 选择文本域中的文本
+		textarea.select();
+
+		// 尝试执行复制操作
+		document.execCommand('copy');
+
+		// 移除文本域元素
+		document.body.removeChild(textarea);
+
+		// 提示用户已复制文本
+		alert("已复制文本: " + textToCopy.innerText);
+		}
+  </script>
+
 
 </head>
 <body id="page-top">
@@ -309,6 +337,7 @@
         <div class="col-lg-14 col-md-12 mx-auto">
                 <hr>
 				<input type="button" value="Submit" onclick="myFunction()">
+				<input type="button" value="Copy" onclick="copyText()">
 				<p id="result">Results:</p>
 				
 				
